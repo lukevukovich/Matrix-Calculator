@@ -55,12 +55,6 @@ build CMakeFiles/MatrixCalculator.dir/main.c.obj: C_COMPILER__MatrixCalculator_D
   OBJECT_DIR = CMakeFiles\MatrixCalculator.dir
   OBJECT_FILE_DIR = CMakeFiles\MatrixCalculator.dir
 
-build CMakeFiles/MatrixCalculator.dir/Calculator.c.obj: C_COMPILER__MatrixCalculator_Debug F$:/Programming/C/MatrixCalculator/Calculator.c || cmake_object_order_depends_target_MatrixCalculator
-  DEP_FILE = CMakeFiles\MatrixCalculator.dir\Calculator.c.obj.d
-  FLAGS = -g
-  OBJECT_DIR = CMakeFiles\MatrixCalculator.dir
-  OBJECT_FILE_DIR = CMakeFiles\MatrixCalculator.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target MatrixCalculator
@@ -69,7 +63,7 @@ build CMakeFiles/MatrixCalculator.dir/Calculator.c.obj: C_COMPILER__MatrixCalcul
 #############################################
 # Link the executable MatrixCalculator.exe
 
-build MatrixCalculator.exe: C_EXECUTABLE_LINKER__MatrixCalculator_Debug CMakeFiles/MatrixCalculator.dir/main.c.obj CMakeFiles/MatrixCalculator.dir/Calculator.c.obj
+build MatrixCalculator.exe: C_EXECUTABLE_LINKER__MatrixCalculator_Debug CMakeFiles/MatrixCalculator.dir/main.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\MatrixCalculator.dir

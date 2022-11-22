@@ -4,6 +4,6 @@
 #define MATRIX 10
 #define DIM 2
 
-void dataInput(int[], int[][MATRIX]);
+void dataInput(int[][MATRIX], int[]);
 
 #endif //MATRIXCALCULATOR_CALCULATOR_H

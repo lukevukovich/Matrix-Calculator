@@ -1,5 +1,7 @@
+#include <stdbool.h>
+#include <stdio.h>
 #include "Calculator.h"
 
-void dataInput(int d[], int m[][MATRIX]) {
-
+void dataInput(int m[][MATRIX], int d[]) {
+    printf("Test\n");
 }
