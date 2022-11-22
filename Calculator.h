@@ -1,0 +1,9 @@
+#ifndef MATRIXCALCULATOR_CALCULATOR_H
+#define MATRIXCALCULATOR_CALCULATOR_H
+
+#define MATRIX 10
+#define DIM 2
+
+void dataInput(int[], int[][MATRIX]);
+
+#endif //MATRIXCALCULATOR_CALCULATOR_H
