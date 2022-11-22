@@ -15,28 +15,40 @@ int main() {
 
     while (!quit) {
 
-        printf("Matrix Calculator:\n(+) Add\n(-) Subtract\n(*) Multiply\n(t) Transpose\n(x) Quit\n");
+        printf("MATRIX CALCULATOR:\n(+) Add\n(-) Subtract\n(*) Multiply\n(t) Transpose\n(x) Quit\n");
 
-        printf("Enter operation:");
-        scanf("%c", &operation);
+        //Get operation from user
+        printf("    Enter Operation:");
+        scanf(" %c", &operation);
 
         while (operation != '+' && operation != '-' &&
                operation != '*' && operation != 't' && operation != 'x') {
-            scanf("%c", &operation);
+            printf("    Enter Operation:");
+            scanf(" %c", &operation);
         }
 
-        printf("\n");
+        if (operation != 'x') {
+            //Perform first matrix data input
+            dataInput(matrix1, dim1);
+        }
 
         switch (operation) {
             case '+':
+                dataInput(matrix2, dim2);
+                add(matrix1, matrix2, matrix3, dim1, dim2, dim3);
                 break;
             case '-':
+                dataInput(matrix2, dim2);
+                sub(matrix1, matrix2, matrix3, dim1, dim2, dim3);
                 break;
             case '*':
+                dataInput(matrix2, dim2);
                 break;
             case 't':
+
                 break;
             case 'x':
+                printf("\nQUIT CALCULATOR\n");
                 quit = true;
                 break;
         }
