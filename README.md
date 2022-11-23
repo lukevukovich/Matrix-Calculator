@@ -1,2 +1,2 @@
 # Matrix-Calculator
-Matrix calculator with add, subtract, multiply, and transpose
+Work in progress, need to add mulitplication functionality and perform tests
