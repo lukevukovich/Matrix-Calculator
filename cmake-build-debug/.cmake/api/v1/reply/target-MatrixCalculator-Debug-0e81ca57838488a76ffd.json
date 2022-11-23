@@ -39,6 +39,9 @@
 			[
 				{
 					"fragment" : "-g"
+				},
+				{
+					"fragment" : "-std=gnu11"
 				}
 			],
 			"language" : "C",

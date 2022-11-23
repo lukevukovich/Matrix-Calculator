@@ -1,9 +1,8 @@
-#include <stdbool.h>
 #include <stdio.h>
 #include "Calculator.h"
 
-void dataInput(int m[][MATRIX], int d[], int n, char op) {
-    printf("\n(%c) MATRIX %d INPUT:\n", tolower(op), n);
+void dataInput(int m[][MATRIX], int d[], char message[], char op) {
+    printf("\n(%c) MATRIX %s INPUT:\n", tolower(op), message);
 
     printf("Enter Matrix Rows (1-%d):", MATRIX);
     scanf("%d", &d[0]);
@@ -37,6 +36,7 @@ void dataInput(int m[][MATRIX], int d[], int n, char op) {
     }
 }
 
+//Rows must be equal and columns must be equal
 void add(int m1[][MATRIX], int m2[][MATRIX], int m3[][MATRIX],
          int d1[], int d2[], int d3[]) {
     int i, j;
@@ -52,14 +52,16 @@ void add(int m1[][MATRIX], int m2[][MATRIX], int m3[][MATRIX],
             }
         }
 
-        printf("\n(+) ");
-        printResult(m3, d3);
+        printMatrix(m1, d1, "1", '+');
+        printMatrix(m2, d2, "2", '+');
+        printMatrix(m3, d3, "RESULT", '+');
     }
     else
-        printf("\nINOPERABLE MATRIX DIMENSIONS\n\n");
+        printf("\nINOPERABLE MATRIX DIMENSIONS\n");
 
 }
 
+//Row sizes must be equal and column sizes must be equal
 void sub(int m1[][MATRIX], int m2[][MATRIX], int m3[][MATRIX],
          int d1[], int d2[], int d3[]) {
     int i, j;
@@ -75,16 +77,41 @@ void sub(int m1[][MATRIX], int m2[][MATRIX], int m3[][MATRIX],
             }
         }
 
-        printf("\n(-) ");
-        printResult(m3, d3);
+        printMatrix(m1, d1, "1", '-');
+        printMatrix(m2, d2, "2", '-');
+        printMatrix(m3, d3, "RESULT", '-');
     }
     else
-        printf("\nINOPERABLE MATRIX DIMENSIONS\n\n");
+        printf("\nINOPERABLE MATRIX DIMENSIONS\n");
 
 }
 
+//Column size of first matrix must equal row size of second matrix
 void mult(int m1[][MATRIX], int m2[][MATRIX], int m3[][MATRIX],
           int d1[], int d2[], int d3[]) {
+    if (d1[1] == d2[0]) {
+        int pivot = d1[1];
+        d3[0] = d1[0];
+        d3[1] = d2[1];
+
+        int i, j, k, tot = 0;
+
+        for (i = 0; i < d3[0]; i++) {
+            for (j = 0; j < d3[1]; j++) {
+                for (k = 0; k < pivot; k++) {
+                    tot += m1[i][k] * m2[k][j];
+                }
+                m3[i][j] = tot;
+                tot = 0;
+            }
+        }
+
+        printMatrix(m1, d1, "1", '*');
+        printMatrix(m2, d2, "2", '*');
+        printMatrix(m3, d3, "RESULT", '*');
+    }
+    else
+        printf("\nINOPERABLE MATRIX DIMENSIONS\n");
 
 }
 
@@ -101,20 +128,35 @@ void trans(int m1[][MATRIX], int m2[][MATRIX],
         }
     }
 
-    printf("\n(t) ");
-    printResult(m2, d2);
+    printMatrix(m1, d1, "1", 't');
+    printMatrix(m2, d2, "RESULT", 't');
 }
 
-void printResult(int m1[][MATRIX], int d1[]) {
+//Prints matrix in standard/readable format
+void printMatrix(int m1[][MATRIX], int d1[], char message[], char op) {
     int i, j;
 
-    printf("RESULT MATRIX:\n");
+    printf("\n(%c) MATRIX %s:\n", tolower(op), message);
 
     for (i = 0; i < d1[0]; i++) {
+        printf("[");
         for (j = 0; j < d1[1]; j++) {
-            printf("Result Matrix[%d][%d] value: %d\n", i, j, m1[i][j]);
+            printf("%d", m1[i][j]);
+            if (j + 1 != d1[1])
+                printf(", ");
+        }
+        printf("]\n");
+    }
+}
+
+void resetMatrix(int m1[][MATRIX], int m2[][MATRIX], int m3[][MATRIX]) {
+    int i, j;
+
+    for (i = 0; i < MATRIX; i++) {
+        for (j = 0; j < MATRIX; j++) {
+            m1[i][j] = 0;
+            m2[i][j] = 0;
+            m3[i][j] = 0;
         }
     }
-
-    printf("\n");
 }

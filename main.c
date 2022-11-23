@@ -17,7 +17,10 @@ int main() {
 
     while (!quit) {
 
-        printf("MATRIX CALCULATOR:\n(+) Add\n(-) Subtract\n(*) Multiply\n(t) Transpose\n(x) Quit\n");
+        //Set all matrix values to 0
+        resetMatrix(matrix1, matrix2, matrix3);
+
+        printf("\nMATRIX CALCULATOR:\n(+) Add\n(-) Subtract\n(*) Multiply\n(t) Transpose\n(x) Quit\n");
 
         //Get operation from user
         printf("ENTER OPERATION:");
@@ -31,11 +34,11 @@ int main() {
 
         if (tolower(operation) != 'x') {
             //Perform first matrix data input
-            dataInput(matrix1, dim1, 1, operation);
+            dataInput(matrix1, dim1, "1", operation);
 
             if (tolower(operation) != 't')
                 //Perform second matrix data input
-                dataInput(matrix2, dim2, 2, operation);
+                dataInput(matrix2, dim2, "2", operation);
         }
 
         //Perform corresponding operation
@@ -47,6 +50,7 @@ int main() {
                 sub(matrix1, matrix2, matrix3, dim1, dim2, dim3);
                 break;
             case '*':
+                mult(matrix1, matrix2, matrix3, dim1, dim2, dim3);
                 break;
             case 't':
             case 'T':
@@ -54,6 +58,7 @@ int main() {
                 break;
             case 'x':
             case 'X':
+                //Quit and break if x is entered
                 printf("\nQUIT CALCULATOR\n");
                 quit = true;
                 break;
