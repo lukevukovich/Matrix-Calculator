@@ -14,6 +14,12 @@
 void dataInput(int[][MATRIX], int[], char[], char);
 //Takes in matrix, dimension, matrix message, and matrix operation
 
+//Get operation input from user
+char getOperation();
+
+//Get user choice to keep previous data
+char getChoice();
+
 //Matrix operations
 void add(int[][MATRIX], int[][MATRIX], int[][MATRIX], int[], int[], int[]);
 void sub(int[][MATRIX], int[][MATRIX], int[][MATRIX], int[], int[], int[]);

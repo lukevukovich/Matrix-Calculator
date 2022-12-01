@@ -3,4 +3,4 @@ project(MatrixCalculator C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(MatrixCalculator main.c Calculator.h)
+add_executable(MatrixCalculator main.c Calculator.h Calculator.c)

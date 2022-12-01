@@ -1,9 +1,9 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <unistd.h>
 
 #include "Calculator.h"
-#include "Calculator.c"
 
 int main() {
     //Operating matrices are matrix1 & matrix2, result matrix is matrix3
@@ -12,33 +12,42 @@ int main() {
     //Matrix dimensions : row = 0, column = 1
     int dim1[DIM], dim2[DIM], dim3[DIM];
 
-    char operation;
-    bool quit = false;
+    //Keeps track of number of times program runs through while loop
+    int programCount = 0;
+
+    char operation, choice;
+    bool quit = false, keepPrevData = false;
 
     while (!quit) {
 
-        //Set all matrix values to 0
-        resetMatrix(matrix1, matrix2, matrix3);
-
         printf("\nMATRIX CALCULATOR:\n(+) Add\n(-) Subtract\n(*) Multiply\n(t) Transpose\n(x) Quit\n");
 
-        //Get operation from user
-        printf("ENTER OPERATION:");
-        scanf(" %c", &operation);
+        //Get operation input
+        operation = getOperation();
 
-        while (operation != '+' && operation != '-' &&
-                operation != '*' && tolower(operation) != 't' && tolower(operation) != 'x') {
-            printf("ENTER OPERATION:");
-            scanf(" %c", &operation);
+        //Only ask to keep previous data after first pass through
+        if (programCount > 0 && tolower(operation) != 'x') {
+            //Get input to keep previous data
+            choice = getChoice();
+
+            if (choice == 'y')
+                keepPrevData = true;
+            else
+                keepPrevData = false;
         }
 
-        if (tolower(operation) != 'x') {
-            //Perform first matrix data input
-            dataInput(matrix1, dim1, "1", operation);
+        if (!keepPrevData) {
+            //Set all matrix values to 0
+            resetMatrix(matrix1, matrix2, matrix3);
 
-            if (tolower(operation) != 't')
-                //Perform second matrix data input
-                dataInput(matrix2, dim2, "2", operation);
+            if (tolower(operation) != 'x') {
+                //Perform first matrix data input
+                dataInput(matrix1, dim1, "1", operation);
+
+                if (tolower(operation) != 't')
+                    //Perform second matrix data input
+                    dataInput(matrix2, dim2, "2", operation);
+            }
         }
 
         //Perform corresponding operation
@@ -64,5 +73,9 @@ int main() {
                 break;
         }
 
+        programCount++;
+
     }
+
+    sleep(1);
 }

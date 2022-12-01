@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 #include "Calculator.h"
 
 void dataInput(int m[][MATRIX], int d[], char message[], char op) {
@@ -34,6 +35,35 @@ void dataInput(int m[][MATRIX], int d[], char message[], char op) {
             }
         }
     }
+}
+
+//Get operation to perform on matrices
+char getOperation() {
+    char operation;
+    printf("ENTER OPERATION:");
+    scanf(" %c", &operation);
+
+    while (operation != '+' && operation != '-' &&
+           operation != '*' && tolower(operation) != 't' && tolower(operation) != 'x') {
+        printf("ENTER OPERATION:");
+        scanf(" %c", &operation);
+    }
+
+    return operation;
+}
+
+//Get operation to perform on matrices
+char getChoice() {
+    char choice;
+    printf("KEEP PREVIOUS DATA? (Y/N):");
+    scanf(" %c", &choice);
+
+    while (tolower(choice) != 'y' && tolower(choice) != 'n') {
+        printf("KEEP PREVIOUS DATA? (Y/N):");
+        scanf(" %c", &choice);
+    }
+
+    return choice;
 }
 
 //Rows must be equal and columns must be equal
